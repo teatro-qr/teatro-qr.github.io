@@ -3,17 +3,20 @@ Vue.component("reproductor", {
     template: ` 
             <div class="row">
                 <h5 style="text-align: center; margin: 30px;">Nombre Del Audio</h5>
-                <audio class="reproductor" style=" width: 100%;" src="/audios/prueba/bensound-summer.mp3" controls="controls"
+                <audio class="reproductor" style=" width: 100%;" src="/audios/prueba/bensound-summer.mp3" controls="controls" controlsList="nodownload"
                     type="audio/mpeg" autoplay="autoplay" preload="preload">
             </div>
     `
 });
 
-var app = new Vue({
-    el: '#app',
-    data: {
-        camaraPrendida: false,
-        spinnerActivo: false
+
+
+Vue.component("scanner-qr", {
+    data: function () {
+        return {
+            camaraPrendida: false,
+            spinnerActivo: false
+        }
     },
     methods: {
         grabar: function () {
@@ -44,5 +47,54 @@ var app = new Vue({
                     M.toast({ html: 'Error al iniciar escaneo, por favor probá nuevamente' });
                 });
         }
-    }
+    },
+    template: ` 
+            <div>
+
+            <div class="row">
+                <div class="col s12 l8 offset-l2">
+                    <div class="card-panel teal">
+                        <span class="white-text">
+                            ¡Bienvenido! Para escuchar uno de nuestros audios simplemente presioná
+                            el botón y escanea el código QR.
+                            Revisa que el navegador tenga permiso para acceder a la cámara de tu teléfono.
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div id="lausan-qr-escaner-web" class="row">
+                <div class="col s4 offset-s4">
+                    <div class="lausan-escaner-container">
+                        <a v-on:click="grabar" v-show="!camaraPrendida"
+                            class="waves-effect waves-light btn-large lausan-color-bordo">
+                            <i class="material-icons left lausan-icono-camara">camera_alt</i>
+                        </a>
+                        <div v-show="spinnerActivo" class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 l8 offset-l2">
+                    <video v-show="camaraPrendida" id="video" class="lausan-video">
+                    </video>
+                </div>
+
+            </div>
+</div>
+    `,
+});
+
+var app = new Vue({
+    el: '#app',
+
 });
