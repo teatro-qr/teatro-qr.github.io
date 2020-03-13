@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#lausan-wrapper {
+    min-height: 100%;
+    background-color: #fbd38e;
+}
+
+.lausan-color-bordo {
+    background-color: #c45333;
+}
+
+.btn-large.lausan-color-bordo:hover {
+    background-color: #873823;
+}
+
+.lausan-escaner-container {
+    text-align: center;
+}
+
+i.lausan-icono-camara {
+    margin-right: unset;
+}
+
+.lausan-video {
+    margin-top: 10px;
+    width: 100%;
+    height: calc(width * 1.33);
+    border: 5px solid #c45333;
+    border-radius: 30px;
+}
