@@ -24,6 +24,16 @@
             });
         }
     </script>
+    
+    <style>
+            .reproductor{
+                width: 100%;
+                bottom: 0 !important;
+                position: fixed !important;
+                left: 0;
+                right: 0;
+            }
+    </style>
 </head>
 
 <body>
@@ -71,6 +81,9 @@
                     <video v-show="camaraPrendida" id="video" class="lausan-video">
                     </video>
                 </div>
+                
+                <audio class="reproductor" src="/audios/prueba/bensound-summer.mp3" controls="controls" type="audio/mpeg" autoplay="autoplay" preload="preload">
+
             </div>
         </div>
     </div>
