@@ -1,5 +1,16 @@
+
+Vue.component("reproductor", {
+    template: ` 
+            <div class="row">
+                <h5 style="text-align: center; margin: 30px;">Nombre Del Audio</h5>
+                <audio class="reproductor" style=" width: 100%;" src="/audios/prueba/bensound-summer.mp3" controls="controls"
+                    type="audio/mpeg" autoplay="autoplay" preload="preload">
+            </div>
+    `
+});
+
 var app = new Vue({
-    el: '#lausan-qr-escaner-web',
+    el: '#app',
     data: {
         camaraPrendida: false,
         spinnerActivo: false
@@ -24,14 +35,14 @@ var app = new Vue({
                             })
                             .catch(() => {
                                 M.toast({ html: 'Error al escanear, por favor probá nuevamente' });
-                            });            
+                            });
                     } else {
                         M.toast({ html: 'No se encontró ninguna cámara disponible' });
                     }
                 })
                 .catch(() => {
                     M.toast({ html: 'Error al iniciar escaneo, por favor probá nuevamente' });
-                });            
+                });
         }
     }
 });

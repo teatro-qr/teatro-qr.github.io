@@ -17,27 +17,19 @@
         <link type="text/css" rel="stylesheet" href="css/teatro-qr.css" media="screen,projection" />
 
         <link rel="manifest" href="/manifest.json">
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
-            }
-        </script>
+      
+    <!-- <script>
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/service-worker.js');
+                    });
+                }
+            </script> -->
 
-        <style>
-            .reproductor{
-                width: 100%;
-/*                bottom: 0 !important;
-                position: fixed !important;
-                left: 0;
-                right: 0;*/
-            }
-        </style>
     </head>
 
     <body>
-        <div id="lausan-wrapper">
+        <div id="app">
             <nav>
                 <div class="nav-wrapper lausan-color-bordo">
                     <a class="brand-logo center">Teatro QR</a>
@@ -83,10 +75,9 @@
                     </div>
 
                 </div>
-                <div class="row">
-                    <h5 style="text-align: center; margin: 30px;">Nombre Del Audio</h5>
-                    <audio class="reproductor" src="/audios/prueba/bensound-summer.mp3" controls="controls" type="audio/mpeg" autoplay="autoplay" preload="preload">
-                </div>
+                <reproductor></reproductor>
+
+
             </div>
         </div>
 
