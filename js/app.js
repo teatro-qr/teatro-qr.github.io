@@ -14,10 +14,33 @@ Vue.component("scanner-qr", {
         return {
             mostrarBotonCamara: true,
             camaraPrendida: false,
-            spinnerActivo: false
+            spinnerActivo: false,
+            navigatorPlatform: ''
         }
     },
     mounted: function () {
+        var iDevices = [
+            'iPad Simulator',
+            'iPhone Simulator',
+            'iPod Simulator',
+            'iPad',
+            'iPhone',
+            'iPod'
+        ];
+
+        this.navigatorPlatform = navigator.platform;
+
+        if (!!navigator.platform) {
+            while (iDevices.length) {
+                if (navigator.platform === iDevices.pop()) {
+                    M.toast({
+                        html: 'Teatro QR no es compatible con IOS por el momento, podes escanear el código QR desde la app de la cámara',
+                        displayLength: 10000
+                    });
+                }
+            }
+        }
+
         var componente = this;
         $("#video").on("play", function () {
             setTimeout(function () {
@@ -32,16 +55,16 @@ Vue.component("scanner-qr", {
             componente.mostrarBotonCamara = false;
             componente.spinnerActivo = true;
             const codeReader = new ZXing.BrowserQRCodeReader();
-            
+
             codeReader
-            .listVideoInputDevices()
-            .then(videoInputDevices => {
-                if (videoInputDevices.length > 0) {
-                    var idDispositivoSeleccionado = videoInputDevices.length > 1 ? videoInputDevices[1].deviceId : videoInputDevices[0].deviceId;
-                    setTimeout(function () {
-                        if (!componente.camaraPrendida) {
-                            componente.spinnerActivo = false;
-                            componente.mostrarBotonCamara = true;
+                .listVideoInputDevices()
+                .then(videoInputDevices => {
+                    if (videoInputDevices.length > 0) {
+                        var idDispositivoSeleccionado = videoInputDevices.length > 1 ? videoInputDevices[1].deviceId : videoInputDevices[0].deviceId;
+                        setTimeout(function () {
+                            if (!componente.camaraPrendida) {
+                                componente.spinnerActivo = false;
+                                componente.mostrarBotonCamara = true;
                                 M.toast({ html: 'Revisá que el navegador tenga permiso para acceder a la cámara de tu teléfono' });
                             }
                         }, 3000);
@@ -64,8 +87,12 @@ Vue.component("scanner-qr", {
     },
     template: ` 
             <div>
-
+            
             <div class="row">
+            <span>
+            {{ navigatorPlatform }}
+            </span>
+                
                 <div class="col s12 l8 offset-l2">
                     <div class="card-panel teal">
                         <span class="white-text">
