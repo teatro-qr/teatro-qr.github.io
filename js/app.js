@@ -9,28 +9,42 @@ Vue.component("reproductor", {
     `
 });
 
-
-
 Vue.component("scanner-qr", {
     data: function () {
         return {
+            mostrarBotonCamara: true,
             camaraPrendida: false,
             spinnerActivo: false
         }
     },
+    mounted: function () {
+        var componente = this;
+        $("#video").on("play", function () {
+            setTimeout(function () {
+                componente.camaraPrendida = true;
+                componente.spinnerActivo = false;
+            }, 300);
+        });
+    },
     methods: {
         grabar: function () {
             var componente = this;
-            componente.camaraPrendida = true;
+            componente.mostrarBotonCamara = false;
             componente.spinnerActivo = true;
             const codeReader = new ZXing.BrowserQRCodeReader();
-
+            
             codeReader
-                .listVideoInputDevices()
-                .then(videoInputDevices => {
-                    if (videoInputDevices.length > 0) {
-                        var idDispositivoSeleccionado = videoInputDevices.length > 1 ? videoInputDevices[1].deviceId : videoInputDevices[0].deviceId;
-                        componente.spinnerActivo = false;
+            .listVideoInputDevices()
+            .then(videoInputDevices => {
+                if (videoInputDevices.length > 0) {
+                    var idDispositivoSeleccionado = videoInputDevices.length > 1 ? videoInputDevices[1].deviceId : videoInputDevices[0].deviceId;
+                    setTimeout(function () {
+                        if (!componente.camaraPrendida) {
+                            componente.spinnerActivo = false;
+                            componente.mostrarBotonCamara = true;
+                                M.toast({ html: 'Revisá que el navegador tenga permiso para acceder a la cámara de tu teléfono' });
+                            }
+                        }, 3000);
                         codeReader
                             .decodeOnceFromVideoDevice(idDispositivoSeleccionado, 'video')
                             .then(result => {
@@ -44,7 +58,7 @@ Vue.component("scanner-qr", {
                     }
                 })
                 .catch(() => {
-                    M.toast({ html: 'Error al iniciar escaneo, por favor probá nuevamente' });
+                    M.toast({ html: 'La versión de tu teléfono no es compatible con el escaner de QR' });
                 });
         }
     },
@@ -57,7 +71,6 @@ Vue.component("scanner-qr", {
                         <span class="white-text">
                             ¡Bienvenido! Para escuchar uno de nuestros audios simplemente presioná
                             el botón y escanea el código QR.
-                            Revisa que el navegador tenga permiso para acceder a la cámara de tu teléfono.
                         </span>
                     </div>
                 </div>
@@ -65,7 +78,7 @@ Vue.component("scanner-qr", {
             <div id="lausan-qr-escaner-web" class="row">
                 <div class="col s4 offset-s4">
                     <div class="lausan-escaner-container">
-                        <a v-on:click="grabar" v-show="!camaraPrendida"
+                        <a v-on:click="grabar" v-show="mostrarBotonCamara"
                             class="waves-effect waves-light btn-large lausan-color-bordo">
                             <i class="material-icons left lausan-icono-camara">camera_alt</i>
                         </a>
@@ -95,6 +108,5 @@ Vue.component("scanner-qr", {
 });
 
 var app = new Vue({
-    el: '#app',
-
+    el: '#app'
 });
