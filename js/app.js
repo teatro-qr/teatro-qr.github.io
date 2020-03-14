@@ -15,7 +15,7 @@ Vue.component("scanner-qr", {
             mostrarBotonCamara: true,
             camaraPrendida: false,
             spinnerActivo: false,
-            navigatorPlatform: ''
+            IOS: false
         }
     },
     mounted: function () {
@@ -28,15 +28,10 @@ Vue.component("scanner-qr", {
             'iPod'
         ];
 
-        this.navigatorPlatform = navigator.platform;
-
         if (!!navigator.platform) {
             while (iDevices.length) {
                 if (navigator.platform === iDevices.pop()) {
-                    M.toast({
-                        html: 'Teatro QR no es compatible con IOS por el momento, podes escanear el código QR desde la app de la cámara',
-                        displayLength: 10000
-                    });
+                    this.IOS = true;
                 }
             }
         }
@@ -54,6 +49,12 @@ Vue.component("scanner-qr", {
             var componente = this;
             componente.mostrarBotonCamara = false;
             componente.spinnerActivo = true;
+            if (componente.IOS) {
+                M.toast({
+                    html: 'Por el momento Teatro QR no es compatible con sistemas operativos IOS, podes escanear el código QR directamente desde la app de la cámara',
+                    displayLength: 15000
+                });
+            }
             const codeReader = new ZXing.BrowserQRCodeReader();
 
             codeReader
@@ -86,13 +87,8 @@ Vue.component("scanner-qr", {
         }
     },
     template: ` 
-            <div>
-            
+        <div>
             <div class="row">
-            <span>
-            {{ navigatorPlatform }}
-            </span>
-                
                 <div class="col s12 l8 offset-l2">
                     <div class="card-panel teal">
                         <span class="white-text">
@@ -130,7 +126,7 @@ Vue.component("scanner-qr", {
                 </div>
 
             </div>
-</div>
+        </div>
     `,
 });
 
