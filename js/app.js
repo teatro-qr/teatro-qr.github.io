@@ -52,7 +52,7 @@ Vue.component("scanner-qr", {
             if (componente.IOS) {
                 M.toast({
                     html: 'Por el momento Teatro QR no es compatible con sistemas operativos IOS, podes escanear el código QR directamente desde la app de la cámara',
-                    displayLength: 15000
+                    displayLength: 30000
                 });
             }
             const codeReader = new ZXing.BrowserQRCodeReader();
@@ -82,7 +82,7 @@ Vue.component("scanner-qr", {
                     }
                 })
                 .catch(() => {
-                    M.toast({ html: 'La versión de tu teléfono no es compatible con el escaner de QR' });
+                    M.toast({ html: 'La versión de tu dispositivo no es compatible con el escaner de QR' });
                 });
         }
     },
