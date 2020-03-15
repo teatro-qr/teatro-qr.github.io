@@ -18,6 +18,12 @@
 
     <link rel="manifest" href="/manifest.json">
 
+    <style>
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            src: url("/font/CormorantGaramond-Regular.ttf");
+        }
+    </style>
     <!-- <script>
                 if ('serviceWorker' in navigator) {
                     window.addEventListener('load', () => {
@@ -31,9 +37,10 @@
 <body>
     <div id="app">
         <nav>
-            <div class="nav-wrapper lausan-color-bordo" >
-                    <a href="/" class="brand-logo left" style="height: 100%;"><img src="images/logo.png" style="height: 100%;"></a>
-                <a class="brand-logo center">Teatro QR</a>
+            <div class="nav-wrapper lausan-color-bordo">
+                <a href="/" class="brand-logo left" style="height: 100%;"><img src="images/logo.png"
+                        style="height: 100%;"></a>
+                <a class="brand-logo center" style="font-family:'Cormorant Garamond'; font-weight:bold; font-style:italic;font-size:2.9em;">Teatro QR</a>
             </div>
         </nav>
         <div class="container">
