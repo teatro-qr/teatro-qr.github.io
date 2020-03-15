@@ -12,8 +12,9 @@ Vue.component("reproductor", {
 
         this.audioSrc = params.get("audio");
         const audio = this.audioSrc;
-        this.nombreAudio = audio.split("/")[1].replace('-',' ');
-
+        if (audio) {
+            this.nombreAudio = audio.split("/")[1].replace('-', ' ');
+        }
 
     },
     template: ` 
