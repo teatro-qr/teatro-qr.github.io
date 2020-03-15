@@ -1,9 +1,25 @@
 
 Vue.component("reproductor", {
+    data: function () {
+        return {
+            audioSrc: "",
+            nombreAudio: ""
+        }
+    },
+    created: function () {
+        let uri = window.location.search.substring(1);
+        let params = new URLSearchParams(uri);
+
+        this.audioSrc = params.get("audio");
+        const audio = this.audioSrc;
+        this.nombreAudio = audio.split("/")[1].replace('-',' ');
+
+
+    },
     template: ` 
-            <div class="row">
-                <h5 style="text-align: center; margin: 30px;">Nombre Del Audio</h5>
-                <audio class="reproductor" style=" width: 100%;" src="/audios/prueba/bensound-summer.mp3" controls="controls" controlsList="nodownload"
+            <div class="row" v-show="audioSrc">
+                <h5 style="text-align: center;margin: 30px;text-transform: capitalize;">{{nombreAudio}}</h5>
+                <audio class="reproductor" style=" width: 100%;" v-bind:src="'/audios/'+audioSrc+'.mp3'" controls="controls" controlsList="nodownload"
                     type="audio/mpeg" autoplay="autoplay" preload="preload">
             </div>
     `
