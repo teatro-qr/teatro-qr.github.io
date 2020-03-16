@@ -31,3 +31,17 @@ i.lausan-icono-camara {
     border: 5px solid #c45333;
     border-radius: 30px;
 }
+
+.lausan-card-subtitulo {
+    padding: 10px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 770px) {
+    .lausan-fondo {
+        background-image: url('../img/fondo.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+}

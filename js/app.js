@@ -109,8 +109,9 @@ Vue.component("scanner-qr", {
                 <div class="col s12 l8 offset-l2">
                     <div class="card-panel teal">
                         <span class="white-text">
-                            ¡Bienvenido! Para escuchar uno de nuestros audios simplemente presioná
-                            el botón y escanea el código QR.
+                        Para vivir la experiencia TEATRO QR, conectá los auriculares a tu teléfono y activá 
+                        la cámara para escanear los códigos QR en las distintas paradas indicadas en el mapa. 
+                        Revisá que el navegador tenga permiso para acceder a tu cámara
                         </span>
                     </div>
                 </div>
