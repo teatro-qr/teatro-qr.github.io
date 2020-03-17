@@ -107,16 +107,6 @@ Vue.component("scanner-qr", {
     },
     template: ` 
         <div>
-            <div class="row">
-                <div class="col s12 l8 offset-l2">
-                    <div class="card-panel teal">
-                        <span class="white-text">
-                        Para vivir la experiencia TEATRO QR, conectá los auriculares a tu teléfono y activá 
-                        la cámara para escanear los códigos QR en las distintas paradas indicadas en el mapa. 
-                        </span>
-                    </div>
-                </div>
-            </div>
             <div id="lausan-qr-escaner-web" class="row">
                 <div class="col s4 offset-s4">
                     <div class="lausan-escaner-container">
