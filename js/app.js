@@ -89,7 +89,9 @@ Vue.component("scanner-qr", {
                         codeReader
                             .decodeOnceFromVideoDevice(idDispositivoSeleccionado, 'video')
                             .then(result => {
-                                window.location.href = result.text;
+                                if (result.text.includes('audio')) {
+                                    window.location.href = result.text;
+                                }
                             })
                             .catch(() => {
                                 M.toast({ html: 'Error al escanear, por favor probá nuevamente' });
