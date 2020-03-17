@@ -113,7 +113,6 @@ Vue.component("scanner-qr", {
                         <span class="white-text">
                         Para vivir la experiencia TEATRO QR, conectá los auriculares a tu teléfono y activá 
                         la cámara para escanear los códigos QR en las distintas paradas indicadas en el mapa. 
-                        Revisá que el navegador tenga permiso para acceder a tu cámara
                         </span>
                     </div>
                 </div>
