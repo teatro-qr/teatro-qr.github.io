@@ -39,7 +39,7 @@ i.lausan-icono-camara {
 
 @media only screen and (max-width: 770px) {
     .lausan-fondo {
-        background-image: url('../img/fondo.jpeg');
+        background-image: url('../img/fondo2.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
